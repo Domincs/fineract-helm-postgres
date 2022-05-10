@@ -34,6 +34,8 @@ fineractServer:
     SUB_PROTOCOL: ""
     fineract_tenants_driver: org.postgresql.Driver
     FINERACT_DEFAULT_TENANTDB_PORT: "5432"
+    FINERACT_DEFAULT_TENANTDB_TIMEZONE: "Africa/Nairobi"
+    
   # -- Same as `extraEnv` but passed as secrets
   extraSecretEnv: {}
   # -- Resource settings for Backend pods

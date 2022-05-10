@@ -39,7 +39,7 @@ __NOTE__: Postgres instance with fineract_tenants and fineract_default DB instal
 |-----|------|---------|-------------|
 | fineractServer.extraEnv | object | See `values.yaml` | Dictionary of key/value pairs to pass as environment variables to the backend pods They will be evaluated as Helm templates |
 | fineractServer.extraSecretEnv | object | `{}` | Same as `extraEnv` but passed as secrets |
-| fineractServer.image.name | string | `"apache/fineract"` | Fineract Docker image name |
+| fineractServer.image.name | string | `"dominicchingoma/fineract"` | Fineract Docker image name |
 | fineractServer.image.tag | string | `"latest"` | Fineract Docker image tag |
 | fineractServer.replicas | int | `1` | Number of backend pods |
 | fineractServer.resources | object | `{"limits":{"cpu":"1000m","memory":"1Gi"}}` | Resource settings for Backend pods |
