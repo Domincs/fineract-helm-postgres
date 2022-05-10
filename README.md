@@ -16,7 +16,7 @@ Apache Fineract: A Platform for Microfinance
 
 ## Source Code
 
-* <https://github.com/one-acre-fund/oaf-public-charts/tree/main/charts/fineract>
+* <https://github.com/Domincs/fineract-helm-postgres>
 
 ## TL;DR;
 
@@ -31,9 +31,7 @@ $ helm install --set mysql.auth.password=xxx --set mysql.auth.rootPassword=yyy m
 
 __NOTE__: Postgres instance with fineract_tenants and fineract_default DB installed. 
 
-| Repository | Name | Version |
-|------------|------|---------|
-| https://charts.bitnami.com/bitnami | mysql | ~8.4.1 |
+
 
 ## Values
 
