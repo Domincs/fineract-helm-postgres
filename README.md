@@ -12,7 +12,7 @@ Apache Fineract: A Platform for Microfinance
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Yann-J | yann.jouanique@gmail.com |  |
+| Dominic | dominicchingoma@gmail.com |  |
 
 ## Source Code
 
@@ -20,7 +20,7 @@ Apache Fineract: A Platform for Microfinance
 
 ## TL;DR;
 
-__NOTE__: Providing values for at least `mysql.auth.password` and `mysql.auth.rootPassword` is mandatory at installation time
+__NOTE__: Providing values for at least `postgres.auth.password` and `mysql.auth.postgresPassword` is mandatory at installation time
 
 ```console
 $ helm repo add one-acre-fund https://one-acre-fund.github.io/oaf-public-charts
@@ -28,6 +28,8 @@ $ helm install --set mysql.auth.password=xxx --set mysql.auth.rootPassword=yyy m
 ```
 
 ## Requirements
+
+__NOTE__: Postgres instance with fineract_tenants and fineract_default DB installed. 
 
 | Repository | Name | Version |
 |------------|------|---------|
@@ -62,11 +64,7 @@ $ helm install --set mysql.auth.password=xxx --set mysql.auth.rootPassword=yyy m
 | mifosx.resources.limits.cpu | string | `"100m"` |  |
 | mifosx.resources.limits.memory | string | `"100Mi"` |  |
 | mifosx.tenant | string | `"default"` | Resource settings for Backend pods |
-| mysql | object | see `values.yaml` | MySQL settings - see https://artifacthub.io/packages/helm/bitnami/mysql |
-| mysql.auth.password | string | `""` | Please change these... |
-| mysql.auth.rootPassword | string | `""` | Please change these... |
-| mysql.auth.username | string | `"fineract"` | Fineract db user |
-| mysql.enabled | bool | `true` | Install MySQL? |
-| mysql.image.tag | string | `"5.7"` | _Warning_: Fineract db driver doesn't support mysql 8 |
-| mysql.initdbScripts | object | see `values.yaml` | Dictionary of init scripts to run on initial MySQL setup __WARNING__! These db init scripts will only be executed on a brand new, uninitialized instance! Further changes will be ignored after the first init, unless you wipe the underlying PV/PVC volumes |
+| postgres.auth.password | string | `""` | Please change these... |
+| postgres.auth.postgresPassword | string | `""` | Please change these... |
+| postgres.auth.username | string | `"fineract"` | Fineract db user |
 | service.type | string | `"ClusterIP"` | Service type for Fineract and UI services |

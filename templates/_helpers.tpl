@@ -15,25 +15,25 @@
 # limitations under the License.
 #
 
-{{- define "mysql_host" -}}
-{{ .Release.Name }}-mysql.{{ .Release.Namespace }}
+{{- define "postgres_host" -}}
+{{ .Values.postgres.hostName }}
 {{- end -}}
 
-{{- define "mysql_url" -}}
-jdbc:mysql:thin://{{ include "mysql_host" . }}:3306/{{ .Values.global.db.tenantsDb }}
+{{- define "postgres_url" -}}
+jdbc:postgresql://{{ .Values.postgres.hostName }}:{{ .Values.postgres.port }}/{{ .Values.global.db.tenantsDb }}
 {{- end -}}
 
-{{- define "mysql_user" -}}
-{{ .Values.mysql.auth.username | default "root" }}
+{{- define "postgres_user" -}}
+{{ .Values.postgres.auth.username | default "postgres" }}
 {{- end -}}
 
-{{- define "mysql_password" -}}
-{{ coalesce .Values.mysql.auth.password .Values.mysql.auth.rootPassword }}
+{{- define "postgres_password" -}}
+{{ coalesce .Values.postgres.auth.password .Values.postgres.auth.postgresPassword }}
 {{- end -}}
 
 {{- define "secrets" -}}
-fineract_tenants_pwd: {{ include "mysql_password" . | b64enc }}
-FINERACT_DEFAULT_TENANTDB_PWD: {{ include "mysql_password" . | b64enc }}
+fineract_tenants_pwd: {{ include "postgres_password" . | b64enc }}
+FINERACT_DEFAULT_TENANTDB_PWD: {{ include "postgres_password" . | b64enc }}
 {{ if .Values.extraSecretEnv }}
 {{- range $key, $value := .Values.extraSecretEnv }}
 {{ $key }}: {{ tpl $value $ | b64enc }}

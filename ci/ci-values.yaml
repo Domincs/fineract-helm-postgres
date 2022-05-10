@@ -1,8 +1,8 @@
 # Values file for CI testing
-mysql:
+postgres:
   auth:
     password: yyyy
-    rootPassword: xxxx
+    postgresPassword: xxxx
 
 mifosx:
   enabled: true

@@ -48,7 +48,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
           - -wait
-          - tcp://{{ include "mysql_host" . }}:3306
+          - tcp://{{ include "postgres_host" . }}:{{ .Values.postgres.port }}
           - -timeout
           - 300s
       containers:
@@ -59,13 +59,13 @@ spec:
                 name: {{ .Release.Name | quote }}
           env:
             - name: FINERACT_DEFAULT_TENANTDB_HOSTNAME
-              value: {{ include "mysql_host" . }}
+              value: {{ include "postgres_host" . }}
             - name: fineract_tenants_url
-              value: {{ include "mysql_url" . }}
+              value: {{ include "postgres_url" . }}
             - name: fineract_tenants_uid
-              value: {{ include "mysql_user" . }}
+              value: {{ include "postgres_user" . }}
             - name: FINERACT_DEFAULT_TENANTDB_UID
-              value: {{ include "mysql_user" . }}
+              value: {{ include "postgres_user" . }}
             {{- if .Values.fineractServer.extraEnv }}
             {{- range $key, $value := .Values.fineractServer.extraEnv }}
             - name: {{ $key | quote}}

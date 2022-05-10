@@ -11,8 +11,8 @@ spec:
       name: test-connections
       args:
         - -timeout=5m
-        # MySQL
-        - -wait=tcp://{{ include "mysql_host" . }}:3306
+        # Postgres
+        - -wait=tcp://{{ include "postgres_host" . }}:{{ .Values.postgres.port }}
         # API
         - -wait=http://{{ .Release.Name }}-backend:8080/fineract-provider/actuator/health/liveness
         # Fineract UI

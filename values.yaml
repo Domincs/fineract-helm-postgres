@@ -22,7 +22,7 @@ fineractServer:
   replicas: 1
   image:
     # -- Fineract Docker image name
-    name: apache/fineract
+    name: dominicchingoma/fineract
     # -- Fineract Docker image tag
     tag: latest
   # -- Dictionary of key/value pairs to pass as environment variables to the backend pods
@@ -31,9 +31,9 @@ fineractServer:
   extraEnv:
     DRIVERCLASS_NAME: org.drizzle.jdbc.DrizzleDriver
     PROTOCOL: jdbc
-    SUB_PROTOCOL: mysql:thin
-    fineract_tenants_driver: org.drizzle.jdbc.DrizzleDriver
-    FINERACT_DEFAULT_TENANTDB_PORT: "3306"
+    SUB_PROTOCOL: ""
+    fineract_tenants_driver: org.postgresql.Driver
+    FINERACT_DEFAULT_TENANTDB_PORT: "5432"
   # -- Same as `extraEnv` but passed as secrets
   extraSecretEnv: {}
   # -- Resource settings for Backend pods
@@ -84,24 +84,20 @@ global:
     # -- DB name for defaults db
     defaultDb: fineract_default
 
-# -- MySQL settings - see https://artifacthub.io/packages/helm/bitnami/mysql
 # @default -- see `values.yaml`
-mysql:
-  # -- Install MySQL?
+
+postgres:
   enabled: true
-  image:
-    # -- _Warning_: Fineract db driver doesn't support mysql 8
-    tag: "5.7"
-  auth:
-    # -- Please change these...
-    rootPassword: ""
-    # -- Please change these...
-    password: ""
-    # -- Fineract db user
-    username: fineract
-  # -- Dictionary of init scripts to run on initial MySQL setup __WARNING__! These db init scripts will only be executed on a brand new, uninitialized instance!
-  # Further changes will be ignored after the first init, unless you wipe the underlying PV/PVC volumes
-  # @default -- see `values.yaml`
+  # -- Please change these...
+  hostName: ""
+  # -- Please change these...
+  postgresPassword: ""
+  # -- Please change these...
+  password: ""
+  #default port
+  port: 5432
+  # -- Fineract db user
+  username: fineract
   initdbScripts:
     create_db.sql: |
       # create databases
